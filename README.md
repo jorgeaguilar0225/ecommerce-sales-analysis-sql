@@ -52,3 +52,21 @@ FROM orders
 JOIN customers ON orders.customer_id = customers.customer_id
 GROUP BY customers.region
 ORDER BY total_sales DESC;
+
+SELECT products.name, SUM(order_items.quantity) AS total_quantity_sold
+FROM order_items
+JOIN products ON order_items.product_id = products.product_id
+GROUP BY products.name
+ORDER BY total_quantity_sold DESC;
+
+SELECT DATE_FORMAT(orders.order_date, '%Y-%m') AS month, SUM(total_amount) AS total_sales
+FROM orders
+GROUP BY month
+ORDER BY month;
+
+SELECT customers.name, SUM(orders.total_amount) AS total_spent
+FROM orders
+JOIN customers ON orders.customer_id = customers.customer_id
+GROUP BY customers.name
+ORDER BY total_spent DESC;
+
