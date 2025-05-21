@@ -64,14 +64,21 @@ GROUP BY products.name
 ORDER BY total_quantity_sold DESC;
 ```
 
+### 🟦 3. Monthly Sales Trends
+
+```sql
 SELECT DATE_FORMAT(orders.order_date, '%Y-%m') AS month, SUM(total_amount) AS total_sales
 FROM orders
 GROUP BY month
 ORDER BY month;
+```
 
+### 🟥 4. Top Customers by Total Spend
+
+```sql
 SELECT customers.name, SUM(orders.total_amount) AS total_spent
 FROM orders
 JOIN customers ON orders.customer_id = customers.customer_id
 GROUP BY customers.name
 ORDER BY total_spent DESC;
-
+```
